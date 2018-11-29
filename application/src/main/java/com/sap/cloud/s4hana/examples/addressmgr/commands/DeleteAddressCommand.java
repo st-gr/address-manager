@@ -1,10 +1,10 @@
 package com.sap.cloud.s4hana.examples.addressmgr.commands;
 
-import com.sap.cloud.sdk.odatav2.connectivity.ODataDeleteResult;
-import com.sap.cloud.sdk.s4hana.datamodel.odata.namespaces.businesspartner.BusinessPartnerAddress;
 import org.slf4j.Logger;
 
 import com.sap.cloud.sdk.cloudplatform.logging.CloudLoggerFactory;
+import com.sap.cloud.sdk.odatav2.connectivity.ODataDeleteResult;
+import com.sap.cloud.sdk.s4hana.datamodel.odata.namespaces.businesspartner.BusinessPartnerAddress;
 import com.sap.cloud.sdk.s4hana.datamodel.odata.services.BusinessPartnerService;
 
 public class DeleteAddressCommand {
@@ -23,14 +23,14 @@ public class DeleteAddressCommand {
     }
 
     public Integer execute() throws Exception {
-        BusinessPartnerAddress businessPartnerAddress =
-                BusinessPartnerAddress.builder()
-                        .businessPartner(businessPartnerId)
-                        .addressID(addressId).build();
+        final BusinessPartnerAddress addressToDelete = BusinessPartnerAddress.builder()
+                .businessPartner(businessPartnerId)
+                .addressID(addressId)
+                .build();
 
-        ODataDeleteResult oDataDeleteResult =
-                service.deleteBusinessPartnerAddress(businessPartnerAddress)
-                        .execute();
+        final ODataDeleteResult oDataDeleteResult = service
+                .deleteBusinessPartnerAddress(addressToDelete)
+                .execute();
 
         return oDataDeleteResult.getHttpStatusCode();
     }

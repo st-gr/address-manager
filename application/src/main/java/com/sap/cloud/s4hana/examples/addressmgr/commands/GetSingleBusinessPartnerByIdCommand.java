@@ -1,10 +1,10 @@
 package com.sap.cloud.s4hana.examples.addressmgr.commands;
 
-import com.sap.cloud.sdk.s4hana.datamodel.odata.namespaces.businesspartner.BusinessPartnerAddress;
 import org.slf4j.Logger;
 
 import com.sap.cloud.sdk.cloudplatform.logging.CloudLoggerFactory;
 import com.sap.cloud.sdk.s4hana.datamodel.odata.namespaces.businesspartner.BusinessPartner;
+import com.sap.cloud.sdk.s4hana.datamodel.odata.namespaces.businesspartner.BusinessPartnerAddress;
 import com.sap.cloud.sdk.s4hana.datamodel.odata.services.BusinessPartnerService;
 
 public class GetSingleBusinessPartnerByIdCommand {
@@ -19,7 +19,8 @@ public class GetSingleBusinessPartnerByIdCommand {
     }
 
     public BusinessPartner execute() throws Exception {
-        return service.getBusinessPartnerByKey(id)
+        return service
+                .getBusinessPartnerByKey(id)
                 .select(BusinessPartner.BUSINESS_PARTNER,
                         BusinessPartner.LAST_NAME,
                         BusinessPartner.FIRST_NAME,
