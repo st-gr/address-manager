@@ -36,7 +36,7 @@ public class GetAllBusinessPartnersCommand extends CachingErpCommand<List<Busine
     }
 
     @Override
-    protected List<BusinessPartner> runCachable() throws Exception {
+    protected List<BusinessPartner> runCacheable() throws Exception {
         return service
                 .getAllBusinessPartner()
                 .select(BusinessPartner.FIRST_NAME, BusinessPartner.LAST_NAME, BusinessPartner.BUSINESS_PARTNER)
@@ -57,7 +57,7 @@ public class GetAllBusinessPartnersCommand extends CachingErpCommand<List<Busine
     }
 
     @Override
-    protected List<BusinessPartner> getFallBack() {
+    protected List<BusinessPartner> getFallback() {
         logger.warn("Fallback called because of exception:", getExecutionException());
         return Collections.emptyList();
     }
